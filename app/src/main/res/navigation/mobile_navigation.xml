@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="bd.com.simply.fragment.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_Wishlist"
+        android:name="bd.com.simply.fragment.WishlistFragment"
+        android:label="@string/wish"
+        tools:layout="@layout/fragment_wishlist">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_Cart"
+        android:name="bd.com.simply.fragment.CartFragment"
+        android:label="@string/cart"
+        tools:layout="@layout/fragment_cart">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_Order"
+        android:name="bd.com.simply.fragment.OrderFragment"
+        android:label="@string/order"
+        tools:layout="@layout/fragment_order">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_Account"
+        android:name="bd.com.simply.fragment.AccountFragment"
+        android:label="@string/account"
+        tools:layout="@layout/fragment_account" />
+</navigation>

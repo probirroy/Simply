@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Simply</string>
+    <string name="home">Home</string>
+    <string name="wish">Wish List</string>
+    <string name="cart">Cart</string>
+    <string name="order">Order</string>
+    <string name="account">Account</string>
+</resources>

@@ -1,0 +1,2 @@
+rootProject.name='Simply BD'
+include ':app'
