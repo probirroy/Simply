@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -23,6 +24,8 @@ import bd.com.simply.R;
 public class HomeFragment extends Fragment {
 
     private WebView myWebView;
+    SwipeRefreshLayout swipeRefreshLayout;
+    String currentUrl = "https://simply.com.bd/";
 
     public HomeFragment() {
         // Required empty public constructor
@@ -46,10 +49,11 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         myWebView = (WebView) rootView.findViewById(R.id.webview);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swip);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl("https://simply.com.bd/");
+        myWebView.loadUrl(currentUrl);
         myWebView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         myWebView.getSettings().setAppCacheEnabled(true);
@@ -82,6 +86,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                myWebView.loadUrl(currentUrl);
+            }
+        });
+
         return rootView;
 
     }
@@ -96,6 +107,12 @@ public class HomeFragment extends Fragment {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
             return true;
+        }
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            swipeRefreshLayout.setRefreshing(false);
+            currentUrl = url;
+            super.onPageFinished(view, url);
         }
     }
 }
